@@ -1,74 +1,423 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aussie English Practice</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background: #00796B;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        main {
-            padding: 1rem;
-        }
-        .phrase {
-            background: white;
-            margin: 0.5rem 0;
-            padding: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .aussie {
-            font-weight: bold;
-            color: #00796B;
-        }
-        .meaning {
-            margin-top: 0.5rem;
-            font-style: italic;
-            color: #555;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aussie English Practice — Full</title>
+<meta name="theme-color" content="#7C3AED">
+<style>
+:root{--brand:#7C3AED;--ink:#120c22;--muted:#6b7280;--bg:#f7f7fb}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+.app{max-width:960px;margin:0 auto;padding:18px 16px 42px}
+.top{display:flex;gap:12px;align-items:center;margin:8px 0 16px}
+.logo{width:40px;height:40px;border-radius:12px;background:var(--brand);display:grid;place-items:center;color:#fff;font-weight:900}
+h1{margin:0;font-size:22px}
+h2{font-size:18px;margin:10px 0}
+.card{background:#fff;border:1px solid #eee;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{padding:6px 10px;border:1px solid #eee;border-radius:999px;font-size:13px}
+.btn{padding:12px 14px;border-radius:12px;background:var(--brand);color:#fff;border:none;font-weight:700;cursor:pointer}
+.btn:disabled{opacity:.6}
+.section{display:none}.section.active{display:block}
+.muted{color:var(--muted);font-size:14px}
+input[type="text"],textarea{width:100%;border:1px solid #eee;border-radius:10px;padding:10px;font-size:15px;background:#fff}
+textarea{min-height:100px}
+a.link{color:var(--brand);text-decoration:none}
+.hl{background:rgba(124,58,237,.10);border-bottom:2px solid rgba(124,58,237,.55)}
+/* “对话气泡”视觉 */
+.bubble{background:#fff;border:1px solid #eee;border-radius:16px;padding:12px 14px;margin:8px 0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.bubble.a{border-top-left-radius:4px}
+.bubble.b{border-top-right-radius:4px}
+small.k{display:inline-block;margin:3px 6px 0 0;padding:4px 8px;border-radius:999px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.25);font-size:12px}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Aussie English Practice</h1>
-        <p>Learn common Australian slang and expressions</p>
-    </header>
-    <main>
-        <div class="phrase">
-            <div class="aussie">Arvo</div>
-            <div class="meaning">Afternoon</div>
-        </div>
-        <div class="phrase">
-            <div class="aussie">Bogan</div>
-            <div class="meaning">An unsophisticated person</div>
-        </div>
-        <div class="phrase">
-            <div class="aussie">No worries</div>
-            <div class="meaning">It’s okay / don’t worry about it</div>
-        </div>
-        <div class="phrase">
-            <div class="aussie">Servo</div>
-            <div class="meaning">Service station / petrol station</div>
-        </div>
-        <div class="phrase">
-            <div class="aussie">Thongs</div>
-            <div class="meaning">Flip-flops / sandals</div>
-        </div>
-        <div class="phrase">
-            <div class="aussie">Chockers</div>
-            <div class="meaning">Very full or crowded</div>
-        </div>
-    </main>
+<div class="app">
+  <div class="top">
+    <div class="logo">💬</div>
+    <div>
+      <h1>Aussie English Practice</h1>
+      <div class="muted">Listening • Speaking • Vocab • Micro Scripts • STAR</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin:0 0 8px">Today’s 30‑minute plan</h3>
+    <div class="row" style="margin:6px 0 10px">
+      <span class="pill">3′ Vocab booster</span>
+      <span class="pill">12′ Listening (Aussie)</span>
+      <span class="pill">10′ Speak & reply</span>
+      <span class="pill">5′ Shadowing</span>
+    </div>
+    <p class="muted">数据仅在本地浏览器；首次使用语音需允许麦克风。建议用 Safari/Chrome 打开并添加到主屏幕。</p>
+    <div class="row">
+      <button class="btn" onclick="show('listen')">▶ Start Listening</button>
+      <button class="btn" onclick="show('speak')">🎙️ Speak / Reply</button>
+      <button class="btn" onclick="show('vocab')">📚 Vocab</button>
+      <button class="btn" onclick="show('scripts')">📝 Micro Scripts</button>
+      <button class="btn" onclick="show('interview')">⭐ STAR Interview</button>
+    </div>
+  </div>
+
+  <!-- Listen -->
+  <div id="listen" class="section active">
+    <h2>Listen (Aussie accent, with slang highlights)</h2>
+    <div id="listenList"></div>
+  </div>
+
+  <!-- Speak -->
+  <div id="speak" class="section">
+    <h2>Speak & Reply (office small talk)</h2>
+    <div class="card">
+      <p class="muted">点“Play prompt”听题目 → 按住“Hold to speak”说话 → 自动打分 + 建议。</p>
+      <div class="row" style="margin:8px 0 10px">
+        <button class="btn" id="playPrompt">▶ Play prompt</button>
+        <button class="btn" id="recBtn">🎙️ Hold to speak</button>
+        <button class="btn" id="nextPrompt">⏭ Next prompt</button>
+      </div>
+      <div class="bubble a"><strong>Prompt: </strong><span id="prompt"></span></div>
+      <textarea id="transcript" placeholder="Your speech will appear here…"></textarea>
+      <p>Score: <span class="pill" id="score">–</span></p>
+      <div id="suggestions" class="muted"></div>
+    </div>
+  </div>
+
+  <!-- Vocab -->
+  <div id="vocab" class="section">
+    <h2>Vocab Booster (Aussie + Office)</h2>
+    <input id="q" type="text" placeholder="Search…">
+    <div id="vlist" style="margin-top:10px"></div>
+  </div>
+
+  <!-- Scripts -->
+  <div id="scripts" class="section">
+    <h2>Micro Scripts（复制→粘贴→改几词就能用）</h2>
+    <div id="slist"></div>
+  </div>
+
+  <!-- STAR -->
+  <div id="interview" class="section">
+    <h2>Interview Practice (STAR)</h2>
+    <div class="card">
+      <div class="row" style="margin-bottom:6px">
+        <button class="btn" id="prev">◀</button>
+        <button class="btn" id="next">▶</button>
+        <button class="btn" id="playQ">🔊 Play question</button>
+        <button class="btn" id="playModel">🎧 Model answer</button>
+        <button class="btn" id="rec">🎙️ Answer (hold)</button>
+      </div>
+      <div class="bubble a"><strong>Question: </strong><span id="q" class="muted"></span></div>
+      <textarea id="ans" placeholder="Speak your answer; transcript appears here…"></textarea>
+      <div id="star"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* -------------------- Data -------------------- */
+const SLANG = [
+  ["arvo","afternoon","Let’s catch up this arvo."],
+  ["brekkie","breakfast","We grabbed brekkie at 8."],
+  ["servo","petrol station","I stopped by the servo for fuel."],
+  ["reckon","think; believe","I reckon it’ll rain later."],
+  ["keen","eager; interested","Keen to join us for lunch?"],
+  ["flat out","very busy","I’ve been flat out all day."],
+  ["no worries","it’s okay; don’t worry","No worries, happy to help."],
+  ["chockers","very full/crowded","The car park is chockers."],
+  ["too easy","no problem","Too easy, leave it with me."],
+  ["no dramas","no problem","No dramas, I’ll handle it."],
+];
+const OFFICE = [
+  ["grab a coffee","get a coffee","Want to grab a coffee?"],
+  ["catch up","meet and talk","Let’s catch up after stand-up."],
+  ["run late","be delayed","Sorry, I’m running late."],
+  ["heads-up","advance notice","Thanks for the heads-up."],
+  ["touch base","make contact briefly","Let’s touch base later."],
+  ["loop in","include someone","I’ll loop you in on the email."],
+  ["kick off","start","We’ll kick off at 10."],
+  ["wrap up","finish","Let’s wrap up soon."],
+  ["ballpark","approximate number","Can I get a ballpark estimate?"],
+  ["follow up","check again","I’ll follow up tomorrow."],
+  ["in the loop","informed","Keep me in the loop."],
+  ["on my plate","tasks to do","I’ve got a lot on my plate."]
+];
+const EXTRA = [
+  ["timebox","limit time","Let’s timebox the review."],
+  ["stand-up","short daily meeting","Daily stand-up at 9:30."],
+  ["retro","meeting to review","Retro this Friday."],
+  ["deep dive","detailed study","We’ll do a deep dive next week."],
+  ["fair enough","reasonable","Fair enough, let’s do that."],
+  ["have a yarn","chat","Let’s have a yarn after lunch."],
+  ["stoked","very pleased","I’m stoked about the result."],
+  ["good on ya","well done","Good on ya for fixing it."]
+];
+const VOCAB = [...SLANG, ...OFFICE, ...EXTRA].map(([term,def,ex])=>({term, simple_def:def, example:ex}));
+
+const DIALOGUE_TEXT = [
+  "A: Morning! How’s your arvo looking? ",
+  "B: Pretty flat out, to be honest. Might need a strong coffee. ",
+  "A: Keen to grab one now? The queue’s not chockers yet. ",
+  "B: Too easy. I’ll duck out and meet you by the lift. ",
+  "A: No worries. Oh—bring a plate for tomorrow’s lunch? ",
+  "B: Righto, I’ll sort it out."
+].join("");
+
+const DIALOGUES = [
+  "Morning greeting","Weekend plans","Weather & commute","Coffee run","Lunch options",
+  "After-standup chat","Parking trouble","Printer jam","Project deadline","Friday arvo drinks"
+].map((title,i)=>({
+  id:i+1,
+  title:`${String(i+1).padStart(2,"0")}. ${title}`,
+  slow_text:DIALOGUE_TEXT,
+  normal_text:DIALOGUE_TEXT,
+  key_phrases: ["arvo","flat out","keen","chockers","too easy","no worries"].slice(0,5+((i%2)?0:0))
+}));
+
+function makeScript(topic){
+  const base = `Opening: Hey, got a minute? I wanted to touch base about ${topic}. `
+    + "Middle: I reckon we keep it simple—grab the quick wins, then do a deeper dive next week. "
+    + "Closing: If you’re keen, we can kick off after lunch. Cheers!";
+  return {
+    topic,
+    text: base,
+    alternatives: {
+      more_polite: base.replace("Hey","Hi there").replace("reckon","think").replace("keen","interested"),
+      more_casual: base.replace("touch base","catch up"),
+      more_humorous: base + " Promise I’ll bring choc biccies—no dramas."
+    }
+  };
+}
+const SCRIPTS = [
+  "the timeline","the handover","the design draft","the bug triage",
+  "Friday arvo drinks","work from home day","parking situation","team dinner plan"
+].map(makeScript);
+
+const STAR = [
+ {q:"Tell me about a time you worked under pressure.",
+  a:"Situation: Release was two days away with a scope change. Task: protect quality and date. Action: re‑prioritised, cut non‑essentials, ran back‑to‑back testing. Result: shipped on time, no sev‑1 issues."},
+ {q:"Give an example of a time you solved a problem at work.",
+  a:"S: API latency spiked. T: restore SLA quickly. A: added caching, profiled queries, set alerts. R: latency down 60%, SLA met."},
+ {q:"Describe a situation where you worked in a team.",
+  a:"S: Cross‑team feature. T: align design and delivery. A: weekly syncs, shared board, clear owners. R: delivered in 3 sprints, fewer blockers."},
+ {q:"Tell me about a time you showed leadership.",
+  a:"S: New hire joined before deadline. T: ramp them fast. A: buddy plan, quick wins, daily check‑ins. R: shipped a PR in week one."},
+ {q:"Give an example of when you had to meet a tight deadline.",
+  a:"S: Client demo moved up. T: deliver stable build. A: timeboxed scope, parallel testing. R: demo succeeded, won extension."}
+];
+
+/* -------------------- Helpers -------------------- */
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function tts(text, rate=1.0){
+  if(!('speechSynthesis' in window)){ alert('SpeechSynthesis not supported.'); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  const vs = speechSynthesis.getVoices();
+  const au = vs.find(v=>/en-AU/i.test(v.lang)) || vs.find(v=>/en-GB|en-US/i.test(v.lang)) || vs[0];
+  if(au) u.voice = au;
+  u.rate = rate;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+/* -------------------- Listen -------------------- */
+(function(){
+  const root = document.getElementById('listenList');
+  const slangSet = new Set(SLANG.map(s=>s[0]));
+  DIALOGUES.forEach(d=>{
+    const wrap = document.createElement('div'); wrap.className='card';
+    wrap.innerHTML = `
+      <h3>${d.title}</h3>
+      <div class="row" style="margin:6px 0 8px">
+        <button class="btn" data-mode="slow">🅰 Slow</button>
+        <button class="btn" data-mode="normal">▶ Normal</button>
+        <button class="btn" data-mode="nosub">🚫 No-sub</button>
+      </div>
+      <div class="muted">Key phrases: ${d.key_phrases.map(k=>`<small class="k">${k}</small>`).join(' ')}</div>
+      <div class="bubble a text"></div>
+      <div class="bubble b text2" style="display:none"></div>
+    `;
+    const textDiv = wrap.querySelector('.text');
+    const textDiv2 = wrap.querySelector('.text2');
+    function render(mode){
+      const visibleSub = mode!=='nosub';
+      const raw = (mode==='slow')? d.slow_text : d.normal_text;
+      const html = raw.split(' ').map(w=>{
+        const clean=w.toLowerCase().replace(/[^a-z']/g,'');
+        if (slangSet.has(clean)) return `<span class="hl" title="tap for meaning">${w}</span>`;
+        return w;
+      }).join(' ');
+      textDiv.innerHTML = visibleSub? html : '';
+      textDiv2.textContent = '';
+    }
+    render('normal');
+    wrap.querySelectorAll('button[data-mode]').forEach(b=>{
+      b.onclick=()=>{
+        render(b.dataset.mode);
+        tts(DIALOGUE_TEXT, b.dataset.mode==='slow'?0.86:1.05);
+      };
+    });
+    wrap.addEventListener('click',e=>{
+      if(e.target.classList.contains('hl')){
+        const term=e.target.textContent.toLowerCase().replace(/[^a-z ]/g,'');
+        const item=VOCAB.find(v=>v.term.toLowerCase()===term);
+        alert((item?`${item.term}: ${item.simple_def}\nExample: ${item.example}`:(term+': common Aussie phrase.')));
+      }else{
+        tts(DIALOGUE_TEXT,1.0);
+      }
+    });
+    root.appendChild(wrap);
+  });
+})();
+
+/* -------------------- Speak & Reply -------------------- */
+(function(){
+  const prompts = [
+    "Morning! How was your weekend?",
+    "We’re grabbing a coffee. Keen to join?",
+    "Traffic was chockers today. How was your commute?",
+    "We’re tight on time—can you take the lead on the slides?",
+    "Any blockers before we kick off the sprint?"
+  ];
+  let idx=0;
+  const pEl = document.getElementById('prompt');
+  const next = ()=>{ pEl.textContent = prompts[idx%prompts.length]; idx++; };
+  next();
+  document.getElementById('playPrompt').onclick=()=>tts(pEl.textContent,1.05);
+  document.getElementById('nextPrompt').onclick=next;
+
+  const recBtn = document.getElementById('recBtn');
+  const out = document.getElementById('transcript');
+
+  if('webkitSpeechRecognition' in window){
+    const r = new webkitSpeechRecognition();
+    r.continuous=false; r.interimResults=true; r.lang='en-AU';
+    let buffer='';
+    recBtn.onmousedown=()=>{ speechSynthesis.cancel(); buffer=''; r.start(); recBtn.textContent='🎙️ Listening…'; };
+    recBtn.onmouseup=()=>{ r.stop(); recBtn.textContent='🎙️ Hold to speak'; };
+    r.onresult=(e)=>{ let t=''; for(let i=e.resultIndex;i<e.results.length;i++){ t+=e.results[i][0].transcript; } buffer=t; out.value=t.trim(); };
+    r.onend=()=> scoreAndTips(out.value);
+  } else {
+    recBtn.onclick=()=>alert('Speech recognition not supported in this browser.');
+  }
+
+  function scoreAndTips(text){
+    if(!text){ document.getElementById('score').textContent='–'; document.getElementById('suggestions').innerHTML=''; return; }
+    const cues=["keen","reckon","no worries","flat out","catch up","grab a coffee","sounds good","fair enough"];
+    let s = Math.min(100,
+      40 + Math.min(40, text.split(/\s+/).length)
+      + cues.reduce((a,c)=>a+(text.toLowerCase().includes(c)?6:0),0)
+    );
+    document.getElementById('score').textContent = Math.round(s);
+    const tips=[];
+    if(!/how (are|was)/i.test(text)) tips.push("Ask a follow‑up: “How was your morning?”");
+    if(!/thanks|thank you|cheers/i.test(text)) tips.push("Add a friendly closer: “Cheers!” / “Thanks, mate.”");
+    if(!/keen|reckon|no worries|flat out/i.test(text)) tips.push("Try an Aussie flavour: keen / reckon / no worries / flat out.");
+    document.getElementById('suggestions').innerHTML = "<ul><li>"+tips.join("</li><li>")+"</li></ul>";
+  }
+})();
+
+/* -------------------- Vocab -------------------- */
+(function(){
+  const root = document.getElementById('vlist');
+  function card(v){
+    const c=document.createElement('div'); c.className='card';
+    c.innerHTML = `
+      <div class="row"><span class="pill">${v.term}</span></div>
+      <p class="muted">${v.simple_def}</p>
+      <div class="bubble a"><em>${v.example}</em></div>
+      <button class="btn">🔊 Listen</button>
+    `;
+    c.querySelector('button').onclick=()=>tts(`${v.term}. ${v.example}`,1.0);
+    return c;
+  }
+  function render(list){ root.innerHTML=''; list.forEach(v=>root.appendChild(card(v))); }
+  render(VOCAB);
+  document.getElementById('q').oninput=(e)=>{
+    const s=e.target.value.toLowerCase();
+    render(VOCAB.filter(v=>v.term.toLowerCase().includes(s)));
+  };
+})();
+
+/* -------------------- Micro Scripts -------------------- */
+(function(){
+  const root=document.getElementById('slist');
+  SCRIPTS.forEach(s=>{
+    const c=document.createElement('div'); c.className='card';
+    c.innerHTML = `
+      <h3 style="margin:0 0 6px">${s.topic}</h3>
+      <textarea>${s.text}</textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="btn" data-v="more_polite">More polite</button>
+        <button class="btn" data-v="more_casual">More casual</button>
+        <button class="btn" data-v="more_humorous">More humorous</button>
+        <button class="btn" data-v="speak">🔊 Speak</button>
+      </div>
+    `;
+    c.querySelectorAll('button[data-v]').forEach(b=>{
+      b.onclick=()=>{
+        if(b.dataset.v==='speak'){
+          tts(c.querySelector('textarea').value,1.02);
+        }else{
+          c.querySelector('textarea').value = s.alternatives[b.dataset.v];
+        }
+      };
+    });
+    root.appendChild(c);
+  });
+})();
+
+/* -------------------- STAR Interview -------------------- */
+(function(){
+  let i=0, rec;
+  function showQ(k){
+    i=(k+STAR.length)%STAR.length;
+    document.getElementById('q').textContent=(i+1)+'. '+STAR[i].q;
+    document.getElementById('star').innerHTML='<p class="muted">STAR check appears here after you answer.</p>';
+    document.getElementById('ans').value='';
+  }
+  function speak(t,r=1.0){ tts(t,r); }
+  document.getElementById('prev').onclick=()=>showQ(i-1);
+  document.getElementById('next').onclick=()=>showQ(i+1);
+  document.getElementById('playQ').onclick=()=>speak(document.getElementById('q').textContent,1.05);
+  document.getElementById('playModel').onclick=()=>speak(STAR[i].a,0.98);
+
+  const recBtn=document.getElementById('rec');
+  if('webkitSpeechRecognition' in window){
+    rec=new webkitSpeechRecognition(); rec.continuous=false; rec.interimResults=true; rec.lang='en-AU';
+    let buf='';
+    recBtn.onmousedown=()=>{ buf=''; rec.start(); recBtn.textContent='🎙️ Listening…'; };
+    recBtn.onmouseup=()=>{ rec.stop(); recBtn.textContent='🎙️ Answer (hold)'; };
+    rec.onresult=(e)=>{ let t=''; for(let k=e.resultIndex;k<e.results.length;k++){ t+=e.results[k][0].transcript; } buf=t; document.getElementById('ans').value=t.trim(); };
+    rec.onend=()=>checkSTAR(document.getElementById('ans').value);
+  }else{
+    recBtn.onclick=()=>alert('Speech recognition not supported in this browser.');
+  }
+
+  function checkSTAR(t){
+    const lc=t.toLowerCase();
+    const has=a=>a.some(w=>lc.includes(w));
+    const S=has(["situation","context","at the time","we had","there was"]);
+    const T=has(["task","goal","needed to","my role","responsible"]);
+    const A=has(["i did","action","i decided","i worked","i led","i coordinated","i fixed","i analysed","i implemented"]);
+    const R=has(["result","so that","as a result","we shipped","outcome","impact","reduced","increased","delivered"]);
+    const missing=[]; if(!S)missing.push("S (Situation)"); if(!T)missing.push("T (Task)"); if(!A)missing.push("A (Action)"); if(!R)missing.push("R (Result)");
+    const score=25*(4-missing.length);
+    const tips = missing.length?("Missing: "+missing.join(", ")): "Great—full STAR covered. Add numbers for impact.";
+    document.getElementById('star').innerHTML = `
+      <p><strong>STAR Score: ${score}</strong></p>
+      <ul class="muted">
+        <li><span class="pill">S</span> Say the context/time, the team, the constraint.</li>
+        <li><span class="pill">T</span> Your goal & responsibility.</li>
+        <li><span class="pill">A</span> Strong verbs: led, analysed, coordinated, implemented.</li>
+        <li><span class="pill">R</span> Use numbers: time saved, defects reduced, revenue impact.</li>
+      </ul>
+      <p>${tips}</p>`;
+  }
+  showQ(0);
+})();
+</script>
 </body>
 </html>
